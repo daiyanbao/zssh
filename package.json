@@ -1,0 +1,16 @@
+{ "name": "zssh",
+  "version": "0.1.1",
+  "author": "Zito Infotech Co. Limited <ceo@daiyanbao.com>",
+  "description": "a ssh agent for docker (base on ssh2)",
+  "main": "server.js",
+  "engines": { "node": ">=0.8.7" },
+  "dependencies": {
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "private" : true,
+  "keywords": [],
+  "licenses": [ { "type": "MIT", "url": "http://github.com/daiyanbao/zssh/raw/master/LICENSE" } ],
+  "repository" : { "type": "git", "url": "http://github.com/daiyanbao/zssh.git" }
+}
