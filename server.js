@@ -4,16 +4,18 @@ var buffersEqual = require('buffer-equal-constant-time'),
     ssh2 = require('ssh2'),
     utils = ssh2.utils;
 
-var pubKey = utils.genPublicKey(utils.parseKey(fs.readFileSync('user.pub')));
+var pubKey = utils.genPublicKey(utils.parseKey(fs.readFileSync('./ssh_keys/user.pub')));
 
 new ssh2.Server({
-  privateKey: fs.readFileSync('host.key')
+  privateKey: fs.readFileSync('./ssh_keys/host.key')
 }, function(client) {
   console.log('Client connected!');
 
   client.on('authentication', function(ctx) {
+    console.log('authentication:::::::::');
+    console.log(ctx);
     if (ctx.method === 'password'
-        && ctx.username === 'foo'
+        && ctx.username === 'root'
         && ctx.password === 'bar')
       ctx.accept();
     else if (ctx.method === 'publickey'
