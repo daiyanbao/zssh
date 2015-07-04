@@ -1,10 +1,11 @@
+
 var fs = require('fs'),
     crypto = require('crypto');
 var buffersEqual = require('buffer-equal-constant-time'),
     ssh2 = require('ssh2'),
     utils = ssh2.utils;
 
-var pubKey = utils.genPublicKey(utils.parseKey(fs.readFileSync('user.pub')));
+var pubKey = utils.genPublicKey(utils.parseKey(fs.readFileSync('./ssh_keys/user.pub')));
 console.log(pubKey);
 new ssh2.Server({
 }, function(client) {
