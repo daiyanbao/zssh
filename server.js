@@ -12,8 +12,7 @@ new ssh2.Server({
   console.log('Client connected!');
 
   client.on('authentication', function(ctx) {
-    console.log('authentication:::::::::');
-    console.log(ctx);
+
     if (ctx.method === 'password'
         && ctx.username === 'root'
         && ctx.password === 'bar')
@@ -21,9 +20,18 @@ new ssh2.Server({
     else if (ctx.method === 'publickey'
              && ctx.key.algo === pubKey.fulltype
              && buffersEqual(ctx.key.data, pubKey.public)) {
+    console.log('publickey:::::::::');
+    console.log(ctx);
+    
       if (ctx.signature) {
         var verifier = crypto.createVerify(ctx.sigAlgo);
         verifier.update(ctx.blob);
+        
+        
+        console.log('signature::::::::::');
+        
+        console.log(pubKey);
+        
         if (verifier.verify(pubKey.publicOrig, ctx.signature, 'binary'))
           ctx.accept();
         else
